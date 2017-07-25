@@ -1,77 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    tools:context="com.scottz.lifttracker.MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+    <fragment
+        android:name="com.scottz.lifttracker.ExerciseInputFragment"
+        android:id="@+id/exercise_input_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <!--<fragment-->
+        <!--android:id="@+id/records_fragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="4" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Squat"
-        android:textSize="24sp"
-        android:id="@+id/tv_exercise"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_margin="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Weight"
-        android:textSize="18sp"
-        android:id="@+id/tv_weight"
-        android:layout_below="@+id/tv_exercise"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_margin="4dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="3"
-        android:textSize="16sp"
-        android:inputType="number|numberDecimal"
-        android:id="@+id/et_weight"
-        android:layout_alignBaseline="@+id/tv_weight"
-        android:layout_toRightOf="@+id/tv_weight"
-        android:layout_toEndOf="@+id/tv_weight"
-        android:imeOptions="actionNext" />
-
-    <TextView
-        android:layout_margin="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reps"
-        android:textSize="18sp"
-        android:id="@+id/tv_reps"
-        android:layout_toRightOf="@+id/et_weight"
-        android:layout_toEndOf="@+id/et_weight"
-        android:layout_alignBaseline="@+id/tv_weight" />
-
-    <EditText
-        android:layout_margin="4dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="3"
-        android:textSize="16sp"
-        android:inputType="number|numberDecimal"
-        android:id="@+id/et_reps"
-        android:layout_toRightOf="@+id/tv_reps"
-        android:layout_toEndOf="@+id/tv_reps"
-        android:layout_alignBaseline="@+id/tv_weight"
-        android:imeOptions="actionNext" />
-
-    <Button
-        android:layout_margin="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:layout_toRightOf="@+id/et_reps"
-        android:layout_alignBaseline="@+id/tv_weight"
-        />
-</RelativeLayout>
+</LinearLayout>
