@@ -9,8 +9,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ExerciseInputFragment exerciseInputFragment = (ExerciseInputFragment) getFragmentManager().findFragmentById(R.id.exercise_input_fragment);
-
     }
 }
