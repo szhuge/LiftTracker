@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">LiftTracker</string>
+    <string name="app_name">Lift Tracker</string>
+    <string-array name="lifts">
+        <item>Squat</item>
+        <item>Deadlift</item>
+        <item>Bench</item>
+        <item>Curls</item>
+    </string-array>
 </resources>
