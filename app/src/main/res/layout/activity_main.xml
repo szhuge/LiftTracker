@@ -1,17 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent">
-    <fragment
-        android:name="com.scottz.lifttracker.ExerciseInputFragment"
-        android:id="@+id/exercise_input_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <fragment
-        android:name="com.scottz.lifttracker.RecordListFragment"
-        android:id="@+id/record_list_fragment"
-        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/exercise_input_fragment"/>
+        android:id="@+id/ll_input_record"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textSize="20sp"
+            android:id="@+id/tv_weight" />
+
+        <EditText
+            android:layout_margin="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:textSize="20sp"
+            android:inputType="number|numberDecimal"
+            android:id="@+id/et_weight" />
+
+        <TextView
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reps"
+            android:textSize="20sp"
+            android:id="@+id/tv_reps" />
+
+        <EditText
+            android:layout_margin="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:id="@+id/et_reps" />
+
+        <Button
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/button_submit" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_records"
+        android:layout_below="@id/ll_input_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
