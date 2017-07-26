@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.scottz.lifttracker.model.Record;
+
+import java.util.List;
 
 /**
  * Created by scottz on 7/25/17.
@@ -18,13 +20,13 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
 
     private RecordClickListener mOnClickListener;
 
-    private ArrayList<String> mRecordList;
+    private List<Record> mRecordList;
 
     public interface RecordClickListener {
         void onRecordClick (int index);
     }
 
-    public RecordAdapter(ArrayList<String> recordList, RecordClickListener listener) {
+    public RecordAdapter(List<Record> recordList, RecordClickListener listener) {
         mRecordList = recordList;
         mOnClickListener = listener;
     }
@@ -43,7 +45,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     @Override
     public void onBindViewHolder(RecordViewHolder holder, int position) {
         if (position >= 0 && position < mRecordList.size()) {
-            holder.recordTextView.setText(mRecordList.get(position));
+            holder.recordTextView.setText(mRecordList.get(position).toString());
         } else {
             holder.recordTextView.setText("Undefined");
         }
@@ -54,8 +56,8 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
         return mRecordList.size();
     }
 
-    public void addRecord(String r) {
-        mRecordList.add(0 /* head index */, r);
+    public void addRecord(Record record) {
+        mRecordList.add(0 /* head index */, record);
         notifyDataSetChanged();
     }
 
