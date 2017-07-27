@@ -11,7 +11,6 @@ import io.realm.RealmObject;
 
 public class Record extends RealmObject {
 
-    // string for now
     public Exercise exercise;
     public double weight;
     public int reps;
@@ -20,6 +19,7 @@ public class Record extends RealmObject {
     @Override
     public String toString() {
         return "[" + (new SimpleDateFormat("E M/dd")).format(date) + "] "
+                + exercise.name + " "
                 + weight + " lb - "
                 + reps + " reps";
     }

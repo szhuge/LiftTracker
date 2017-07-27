@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import com.scottz.lifttracker.model.Exercise;
 
 import io.realm.Realm;
-import io.realm.RealmRecyclerViewAdapter;
 import io.realm.RealmResults;
 
 /**
@@ -21,6 +20,9 @@ public class ExerciseActivity extends AppCompatActivity {
     private RecyclerView mExerciseList;
 
     private Realm realm;
+
+    private static final String[] initialExercises =
+            {"Squat", "Deadlift", "Bench Press", "Overhead Press", "Curls"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +38,35 @@ public class ExerciseActivity extends AppCompatActivity {
         mExerciseList.setLayoutManager(new LinearLayoutManager(this));
         mExerciseList.setHasFixedSize(true);
 
-        RealmResults<Exercise> results = realm.where(Exercise.class).findAll();
-
-        // add in a few exercises if empty
-        if (results.size() <= 1) {
-            realm.executeTransaction(new Realm.Transaction() {
-                @Override
-                public void execute(Realm realm) {
-                    Exercise exercise = realm.createObject(Exercise.class);
-                    exercise.name = "Curls";
-                }
-            });
+        // Initialize exercise list if empty
+        if (realm.where(Exercise.class).findAll().size() == 0) {
+            for (String exerciseName : initialExercises) {
+                addExercise(exerciseName);
+            }
         }
 
         mExerciseAdapter = new ExerciseAdapter(realm.where(Exercise.class).findAll(), true /* autoUpdate */);
         mExerciseList.setAdapter(mExerciseAdapter);
+    }
+
+    private void addExercise(final String inputName) {
+        if (realm == null || realm.isClosed()) {
+            return;
+        }
+
+        // Check for duplicates
+        RealmResults<Exercise> results = realm.where(Exercise.class).contains("name", inputName).findAll();
+        if (results.size() > 0) {
+            return;
+        }
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Exercise exercise = realm.createObject(Exercise.class);
+                exercise.name = inputName;
+            }
+        });
     }
 
     @Override
