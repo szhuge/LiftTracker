@@ -1,7 +1,6 @@
 package com.scottz.lifttracker;
 
 import android.content.Context;
-import android.icu.text.AlphabeticIndex;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +35,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View view = inflater.inflate(R.layout.record_row, parent, false /* attach to parent immediately */);
+        View view = inflater.inflate(R.layout.row_record, parent, false /* attach to parent immediately */);
         RecordViewHolder viewHolder = new RecordViewHolder(view);
 
         return viewHolder;

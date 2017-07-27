@@ -8,13 +8,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.scottz.lifttracker.model.Exercise;
 import com.scottz.lifttracker.model.Record;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import io.realm.Realm;
@@ -34,7 +32,7 @@ public class RecordActivity extends AppCompatActivity implements RecordAdapter.R
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_record);
 
         realm = Realm.getDefaultInstance();
 
