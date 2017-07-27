@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.scottz.lifttracker.model.Exercise;
@@ -40,25 +41,36 @@ public class ExerciseAdapter extends RealmRecyclerViewAdapter<Exercise, Exercise
         if (e == null) {
             holder.exerciseTextView.setText(null);
         } else {
-            holder.exerciseTextView.setText(getItem(position).toString());
+            holder.exercise = getItem(position);
+            holder.exerciseTextView.setText(holder.exercise.name);
         }
     }
 
-    class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ExerciseViewHolder extends RecyclerView.ViewHolder {
+        protected Exercise exercise;
+        protected ImageButton deleteImageButton;
         protected TextView exerciseTextView;
 
         public ExerciseViewHolder(View itemView) {
             super(itemView);
 
-            exerciseTextView = (TextView) itemView.findViewById(R.id.tv_exercise);
-            itemView.setOnClickListener(this);
-        }
+            deleteImageButton = (ImageButton) itemView.findViewById(R.id.ib_delete);
+            deleteImageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((ExerciseActivity) view.getContext()).removeExercise(exercise.name);
+                }
+            });
 
-        @Override
-        public void onClick(View view) {
-            Context context = view.getContext();
-            context.startActivity(RecordActivity.newIntent(context
-                    , exerciseTextView.getText().toString()));
+            exerciseTextView = (TextView) itemView.findViewById(R.id.tv_exercise);
+            exerciseTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = view.getContext();
+                    context.startActivity(RecordActivity.newIntent(context
+                            , exercise.name));
+                }
+            });
         }
     }
 }

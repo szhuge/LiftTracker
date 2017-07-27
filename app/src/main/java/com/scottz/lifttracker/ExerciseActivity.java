@@ -49,7 +49,7 @@ public class ExerciseActivity extends AppCompatActivity {
         mExerciseList.setAdapter(mExerciseAdapter);
     }
 
-    private void addExercise(final String inputName) {
+    public void addExercise(final String inputName) {
         if (realm == null || realm.isClosed()) {
             return;
         }
@@ -65,6 +65,25 @@ public class ExerciseActivity extends AppCompatActivity {
             public void execute(Realm realm) {
                 Exercise exercise = realm.createObject(Exercise.class);
                 exercise.name = inputName;
+            }
+        });
+    }
+
+    public void removeExercise(final String inputName) {
+        if (realm == null || realm.isClosed()) {
+            return;
+        }
+
+        // Check for duplicates
+        final RealmResults<Exercise> results = realm.where(Exercise.class).contains("name", inputName).findAll();
+        if (results.size() == 0) {
+            return;
+        }
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                results.deleteAllFromRealm();
             }
         });
     }
