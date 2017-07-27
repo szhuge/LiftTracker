@@ -21,8 +21,12 @@ import io.realm.RealmRecyclerViewAdapter;
 
 public class ExerciseAdapter extends RealmRecyclerViewAdapter<Exercise, ExerciseAdapter.ExerciseViewHolder> {
 
+    // True iff we're deleting exercises (delete icon visible)
+    private boolean mDeleteMode;
+
     public ExerciseAdapter(@Nullable OrderedRealmCollection<Exercise> data, boolean autoUpdate) {
         super(data, autoUpdate);
+        mDeleteMode = false;
     }
 
     @Override
@@ -44,6 +48,17 @@ public class ExerciseAdapter extends RealmRecyclerViewAdapter<Exercise, Exercise
             holder.exercise = getItem(position);
             holder.exerciseTextView.setText(holder.exercise.name);
         }
+
+        if (mDeleteMode) {
+            holder.deleteImageButton.setVisibility(View.VISIBLE);
+        } else {
+            holder.deleteImageButton.setVisibility(View.GONE);
+        }
+    }
+
+    public void toggleDeleteMode() {
+        mDeleteMode = !mDeleteMode;
+        notifyDataSetChanged();
     }
 
     class ExerciseViewHolder extends RecyclerView.ViewHolder {

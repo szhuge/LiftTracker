@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.scottz.lifttracker.model.Exercise;
 
@@ -86,6 +88,25 @@ public class ExerciseActivity extends AppCompatActivity {
                 results.deleteAllFromRealm();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_exercise, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        switch (itemId) {
+            case R.id.action_toggle_delete:
+                mExerciseAdapter.toggleDeleteMode();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
