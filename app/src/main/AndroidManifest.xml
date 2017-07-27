@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".LiftTrackerApp">
-        <activity android:name=".RecordActivity">
+        <activity android:name=".ExerciseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

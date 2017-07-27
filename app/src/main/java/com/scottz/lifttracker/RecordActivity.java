@@ -22,8 +22,6 @@ import io.realm.Sort;
 
 public class RecordActivity extends AppCompatActivity implements RecordAdapter.RecordClickListener {
 
-    private static final int NUM_LIST_ITEMS = 11;
-
     private EditText mWeightInput;
     private EditText mRepsInput;
     private Button mSubmitButton;

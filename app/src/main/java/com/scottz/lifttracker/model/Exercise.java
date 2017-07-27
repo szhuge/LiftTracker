@@ -8,4 +8,9 @@ import io.realm.RealmObject;
 
 public class Exercise extends RealmObject {
     public String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
