@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Lift Tracker</string>
+    <string name="menu_exercise_add">Add</string>
+    <string name="menu_exercise_delete">Delete</string>
     <string-array name="lifts">
         <item>Squat</item>
         <item>Deadlift</item>

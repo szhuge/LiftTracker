@@ -61,6 +61,12 @@ public class ExerciseAdapter extends RealmRecyclerViewAdapter<Exercise, Exercise
         notifyDataSetChanged();
     }
 
+    // Sets visibility of delete button
+    public void toggleDeleteMode(boolean visible) {
+        mDeleteMode = visible;
+        notifyDataSetChanged();
+    }
+
     class ExerciseViewHolder extends RecyclerView.ViewHolder {
         protected Exercise exercise;
         protected ImageButton deleteImageButton;

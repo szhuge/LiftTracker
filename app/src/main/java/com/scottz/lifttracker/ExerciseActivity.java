@@ -1,11 +1,15 @@
 package com.scottz.lifttracker;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.scottz.lifttracker.model.Exercise;
 
@@ -100,9 +104,40 @@ public class ExerciseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 
+        // Exit delete mode unless we are toggling it
+        if (itemId != R.id.action_toggle_delete) {
+            mExerciseAdapter.toggleDeleteMode(false /*visible*/);
+        }
+
         switch (itemId) {
             case R.id.action_toggle_delete:
                 mExerciseAdapter.toggleDeleteMode();
+                break;
+            case R.id.action_add_exercise:
+                final EditText exercise_input = new EditText(this);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                alertDialogBuilder
+                        .setTitle("Add exercise")
+                        .setCancelable(true /* cancelable */)
+                        .setView(exercise_input)
+                        .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (!TextUtils.isEmpty(exercise_input.getText())) {
+                                    addExercise(exercise_input.getText().toString());
+                                }
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+
+                alertDialogBuilder.create().show();
                 break;
         }
 
